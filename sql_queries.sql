@@ -41,7 +41,7 @@ USE projectx_db;
 INSERT INTO users (name, email, password)
 VALUES ('some_name', 'some_email@mail.com', 'some_password');
 
--- #4 get user password
+-- #4 get user's password
 USE projectx_db;
 SELECT password
 FROM users
@@ -56,13 +56,7 @@ WHERE user_id IN
     
 -- #6 get devices by location
 USE projectx_db;
-SELECT 
-	android_id,
-    latitude,
-    longitude,
-    charge_level,
-    charge_status,
-    temperature
+SELECT *
 FROM devices
 WHERE device_id IN
 	(SELECT device_id 
