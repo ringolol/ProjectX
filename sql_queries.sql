@@ -63,5 +63,17 @@ WHERE device_id IN
      FROM devices_locations
      WHERE location_id = '2');
      
--- #test
+-- test #1
 SELECT * FROM devices WHERE android_id = 'krakoziabra314';
+
+-- #get file from db
+USE projectx_db;
+SELECT *
+FROM files
+WHERE device_id = 7 AND location_id = 2
+ORDER BY file_id DESC
+LIMIT 1;
+
+-- test #2
+USE projectx_db;
+INSERT INTO files (device_id,location_id,image) VALUES(7,2,'test');

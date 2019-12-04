@@ -92,6 +92,7 @@
 
                     echo "<h3><br></h3>";
                 }
+                $conn->close();
             }
 
             function get_special_path($file_name) {
