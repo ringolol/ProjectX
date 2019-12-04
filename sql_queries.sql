@@ -17,7 +17,7 @@ WHERE android_id = 'krakoziabra111';
 -- #3 register device by android_id
 USE projectx_db;
 INSERT INTO devices (android_id)
-	VALUES ('abcdef123');
+	VALUES ('53d2f8543b911f59');
 
 -- WEB QUERIES
 -- #1 set color balance by android_id
@@ -62,3 +62,6 @@ WHERE device_id IN
 	(SELECT device_id 
      FROM devices_locations
      WHERE location_id = '2');
+     
+-- #test
+SELECT * FROM devices WHERE android_id = 'krakoziabra314';

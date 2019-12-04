@@ -8,12 +8,13 @@
 <body>
     <form class="box">
         <?php
-            // database constants
+            // database "constants"
             $servername = "localhost";
             $username = "root";
             $password = "12344321aAcCc";
             $dbname = "projectx_db";
-            // ftp constants
+
+            // ftp "constants"
             $ftp_server = "localhost";
             $ftp_username = "root";
             $ftp_userpass = "12344321aAcCc";
@@ -93,6 +94,10 @@
                 }
             }
 
+            function get_special_path($file_name) {
+                return "temp/{$_POST['login_field']}_{$file_name}";
+            }
+
             function ftp_get_image($ftp_server, $ftp_username, $ftp_userpass, $file_name) {
                 // connect to FTP server
                 $ftp_conn = ftp_connect($ftp_server) or die("Could not connect to $ftp_server");
@@ -100,7 +105,7 @@
                 $login = ftp_login($ftp_conn, $ftp_username, $ftp_userpass);
 
 
-                $local_file = "temp/{$_POST['login_field']}_{$file_name}";
+                $local_file = get_special_path($file_name);
 
                 // download server file
                 if (ftp_get($ftp_conn, $local_file, $file_name, FTP_ASCII)) {
@@ -116,16 +121,16 @@
             // login using data from forms
             $error = login($servername, $username, $password, $dbname);
 
-            // if the user name or password is wrong
+            // if the username or password is wrong
             if(isset($error)) {
                 // print error message
                 echo "<h2>$error</h2>";
             } else {
-                // get images from ftp
+                // get image from ftp
                 $file_name = 'smilyface.png';
                 ftp_get_image($ftp_server, $ftp_username, $ftp_userpass, $file_name);
                 // show image
-                echo "<img src='temp/{$_POST['login_field']}_{$file_name}'>";
+                printf("<img src='%s'>", get_special_path($file_name));
                 // show data
                 show_data($servername, $username, $password, $dbname);
             }
