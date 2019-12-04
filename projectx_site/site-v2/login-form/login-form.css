@@ -62,9 +62,9 @@
     color: white;
     border-radius: 24px;
     font-size: 18px;
-    transition: 0.5s;
 }
 
 .button.login-form__button:hover {
-    background: var(--nice-green); 
+    background: var(--nice-green);
+    transition: 0.3s; 
 }
