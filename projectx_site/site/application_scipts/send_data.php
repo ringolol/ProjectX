@@ -14,7 +14,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $image = '../temp/Rosa_smilyface.png';
+    $image = '../temp/smilyface.png';
     $contents = addslashes(file_get_contents($image));
 
     $sql_insert_image = "INSERT INTO files (device_id,location_id,image) VALUES(7,2,'{$contents}');";
@@ -30,8 +30,6 @@
                       ORDER BY file_id DESC
                       LIMIT 1;";
 
-
-    // send file to db
     $result_image = mysqli_query($conn, $sql_get_image);
 
     $row_image = mysqli_fetch_array($result_image);

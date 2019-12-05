@@ -18,6 +18,20 @@ WHERE android_id = 'krakoziabra111';
 USE projectx_db;
 INSERT INTO devices (android_id)
 	VALUES ('53d2f8543b911f59');
+    
+-- #4 add picture by device_ID
+USE projectx_db;
+INSERT INTO files(device_id, location_id, image)
+VALUES
+	((SELECT device_id
+    FROM devices
+    WHERE android_id = 'krakoziabra314'),
+    (SELECT location_id
+    FROM devices_locations
+    JOIN devices
+    USING (device_id)
+    WHERE android_id = 'krakoziabra314'),
+    LOAD_FILE('W:\userdata\php_upload\phpDBBD.tmp'));
 
 -- WEB QUERIES
 -- #1 set color balance by android_id
