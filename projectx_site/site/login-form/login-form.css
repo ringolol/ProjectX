@@ -5,13 +5,22 @@
     background-size: cover;
     display: flex;
 	justify-content: center;
-	align-items: center;
+    align-items: center;
+}
+
+.register_text {
+    color: white;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
 }
 
 .login-form {
 	width: 300px;
-	height: 350px;
     padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 	background: var(--dark-background);
 	border-radius: 10px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
@@ -68,3 +77,23 @@
     background: var(--nice-green);
     transition: 0.3s; 
 }
+
+ /* unvisited link */
+ a:link {
+    color: white;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: white;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: white;
+  }
+  
+  /* selected link */
+  a:active {
+    color: white;
+  } 
