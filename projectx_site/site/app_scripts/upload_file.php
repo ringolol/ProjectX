@@ -15,20 +15,8 @@
 
         move_uploaded_file($tmp_name, $image_path);
 
-        // database "constants"
-        $servername = "localhost";
-        $username = "root";
-        $password = "12344321aAcCc";
-        $dbname = "projectx_db";
-        
-        // Create connection
-        $con = new mysqli($servername, $username, $password, $dbname);
-        
-        // Check connection
-        if (mysqli_connect_errno())
-        {
-            echo "Failed to connect to the MySQL: " . mysqli_connect_error() + "\n";
-        }
+        /* Include config file */
+        require_once "../config.php";
 
         $sql_get_deviceID_locationID =
         "SELECT device_id, location_id

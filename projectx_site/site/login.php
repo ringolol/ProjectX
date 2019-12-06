@@ -1,139 +1,126 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+  header("location: welcome.php");
+  exit;
+}
+ 
+// Include config file
+require_once "config.php";
+ 
+// Define variables and initialize with empty values
+$username = $password = "";
+$username_err = $password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Check if username is empty
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter username.";
+    } else{
+        $username = trim($_POST["username"]);
+    }
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter your password.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+        // Prepare a select statement
+        $sql = 
+        "SELECT user_id, username, password
+        FROM users WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($con, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = $username;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                
+                // Check if username exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password, $hashed_password)){
+                            // Password is correct, so start a new session
+                            session_start();
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["user_id"] = $id;
+                            $_SESSION["username"] = $username;                            
+                            
+                            // Redirect user to welcome page
+                            header("location: welcome.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $password_err = "The password you entered was not valid.";
+                        }
+                    }
+                } else{
+                    // Display an error message if username doesn't exist
+                    $username_err = "No account found with that username.";
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+        
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    
+    // Close connection
+    mysqli_close($con);
+}
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Locations</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+    </style>
 </head>
 <body>
-    <form class="box">
-        <?php
-            // database "constants"
-            $servername = "localhost";
-            $username = "root";
-            $password = "12344321aAcCc";
-            $dbname = "projectx_db";
-
-            // ftp "constants"
-            $ftp_server = "localhost";
-            $ftp_username = "root";
-            $ftp_userpass = "12344321aAcCc";
-
-            function login($servername, $username, $password, $dbname) {
-                $error = NULL;
-                // connect to db
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                if ($conn->connect_error) {
-                    return "Please contact support. Connection failed: " . $conn->connect_error;
-                }
-                
-                // get users password from db
-                $sql_login =   "SELECT password
-                                FROM users
-                                WHERE name = '{$_POST['login_field']}';";
-
-
-                $result_login = $conn->query($sql_login);
-
-
-                if ($result_login->num_rows == 1) {
-                    $row_login = $result_login->fetch_assoc();
-                    // compare password from db and entered password
-                    if($row_login['password'] == $_POST['password_field']) {
-                        $logged = true;
-                    } else {
-                        $error = "Wrong password";
-                    }
-                } else if ($result_login->num_rows == 0) {
-                    $error = "Wrong user name";
-                } else {
-                    $error = "Too many users with the same name.\nIf you cannot log in, please contact support.";
-                }
-
-                // disconnect from db
-                $conn->close();
-
-                return $error;
-            }
-
-            function show_data($servername, $username, $password, $dbname) {
-                echo '<h1>Locations</h1>';
-
-                // connect to db
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                // sql query for locations
-                $sql_locations =   "SELECT location_id, name
-                                    FROM locations
-                                    WHERE user_id IN
-                                        (SELECT user_id FROM users WHERE name = '{$_POST['login_field']}')";
-                
-                $result_loc = $conn->query($sql_locations);
-
-                while($row_loc = $result_loc->fetch_assoc()) {
-                    echo "<h3>Location: " . $row_loc["name"] . "</h3>";
-
-                    // sql query for devices on this location
-                    $sql_devices = "SELECT *
-                                    FROM devices
-                                    WHERE device_id IN
-                                        (SELECT device_id 
-                                        FROM devices_locations
-                                        WHERE location_id = '{$row_loc["location_id"]}');";
-
-                    $result_dev = $conn->query($sql_devices);
-                    echo "<h3>Devices:</h3>";
-                    while($row_dev = $result_dev->fetch_assoc()) {
-                        echo "ID: " . $row_dev['android_id'] . "<br>location: " . $row_dev['latitude'] 
-                            . " / " . $row_dev['longitude'] . "<br>" . "charge_level: " . $row_dev['charge_level'] . "<br><br>";
-                    }
-
-                    echo "<h3><br></h3>";
-                }
-                $conn->close();
-            }
-
-            function get_special_path($file_name) {
-                return "temp/{$_POST['login_field']}_{$file_name}";
-            }
-
-            function ftp_get_image($ftp_server, $ftp_username, $ftp_userpass, $file_name) {
-                // connect to FTP server
-                $ftp_conn = ftp_connect($ftp_server) or die("Could not connect to $ftp_server");
-                // login to FTP server
-                $login = ftp_login($ftp_conn, $ftp_username, $ftp_userpass);
-
-
-                $local_file = get_special_path($file_name);
-
-                // download server file
-                if (ftp_get($ftp_conn, $local_file, $file_name, FTP_ASCII)) {
-                    echo "Successfully written to $local_file";
-                } else {
-                    echo "Error downloading $file_name";
-                }
-
-                // close ftp connection
-                ftp_close($ftp_conn); 
-            }
-            
-            // login using data from forms
-            $error = login($servername, $username, $password, $dbname);
-
-            // if the username or password is wrong
-            if(isset($error)) {
-                // print error message
-                echo "<h2>$error</h2>";
-                exit();
-            } else {
-                // show data
-                show_data($servername, $username, $password, $dbname);
-            }
-
-        ?>
-    </form>
+    <div class="wrapper">
+        <h2>Login</h2>
+        <p>Please fill in your credentials to login.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login">
+            </div>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+        </form>
+    </div>    
 </body>
 </html>
