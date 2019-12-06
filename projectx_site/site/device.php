@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Personal office</title>
-    <link rel="stylesheet" href="../../index.css">
-    <link rel="stylesheet" href="../personal-office__header/personal-office__header.css">
-    <link rel="stylesheet" href="photo-gallery.css">
-    <link rel="stylesheet" href="../personal-office__background.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
+    <link rel="stylesheet" href="photo-gallery/photo-gallery.css">
+    <link rel="stylesheet" href="personal-office/personal-office__background.css">
 <body class="body">
     <header class="header">
         <nav class="nav-panel header__nav-panel">

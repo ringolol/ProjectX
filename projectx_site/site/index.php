@@ -30,7 +30,7 @@
         <nav class="nav-panel header__nav-panel">
             <ul class="header__nav-ul">
                 <li>
-                    <a href="logout.php" class="nav-item header__nav-item">About</a>
+                    <a href="logout.php" class="nav-item header__nav-item">Logout</a>
                 </li>
             </ul>
         </nav>
