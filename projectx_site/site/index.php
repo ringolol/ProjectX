@@ -46,7 +46,7 @@
             require_once "config.php";
 
             $sql_locations =   "
-            SELECT name
+            SELECT name, location_id
               FROM locations
               WHERE user_id = '{$user_id}'";
                 
@@ -54,7 +54,7 @@
 
             while($row_loc = $result_loc->fetch_assoc()) {
               echo "
-              <a href='lol.php'>
+              <a href='device.php?loc={$row_loc['location_id']}'>
                 <div class='wrap wrap--1'>
                   <div class='container container--1'>
                     <p>{$row_loc['name']}</p>
