@@ -1,0 +1,12 @@
+* {
+	margin: 0;
+    padding: 0;
+}
+
+/*------------------------------------Presets----------------------------------------------*/
+:root {
+    --background-gradient: linear-gradient(to top, #209cff 0%, #68e0cf 100%);
+    --dark-background: #0a0e31;
+    --field-color: rgba(255, 255, 255, 0.08);
+    --nice-green: #10ac84;
+}
