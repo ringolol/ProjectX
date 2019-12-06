@@ -1,7 +1,7 @@
 <?php
     if (is_uploaded_file($_FILES['sent_image']['tmp_name'])) {
         $android_id = $_POST['android_id'];
-        $uploads_dir = "images/{$android_id}/";
+        $uploads_dir = "../images/{$android_id}/";
         $tmp_name = $_FILES['sent_image']['tmp_name'];
         $pic_name = $_FILES['sent_image']['name'];
     
@@ -43,7 +43,6 @@
             $location_id = $row['location_id'];
         } else {
             echo "Device is not linked to any location\n";
-            echo $sql_get_deviceID_locationID . "\n";
             exit();
         }
 

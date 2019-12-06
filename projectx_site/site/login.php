@@ -24,8 +24,8 @@
                 // connect to db
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                } 
+                    return "Please contact support. Connection failed: " . $conn->connect_error;
+                }
                 
                 // get users password from db
                 $sql_login =   "SELECT password
@@ -49,6 +49,7 @@
                 } else {
                     $error = "Too many users with the same name.\nIf you cannot log in, please contact support.";
                 }
+
                 // disconnect from db
                 $conn->close();
 
@@ -126,12 +127,8 @@
             if(isset($error)) {
                 // print error message
                 echo "<h2>$error</h2>";
+                exit();
             } else {
-                // get image from ftp
-                $file_name = 'smilyface.png';
-                ftp_get_image($ftp_server, $ftp_username, $ftp_userpass, $file_name);
-                // show image
-                printf("<img src='%s'>", get_special_path($file_name));
                 // show data
                 show_data($servername, $username, $password, $dbname);
             }

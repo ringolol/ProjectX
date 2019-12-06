@@ -2,7 +2,6 @@
 
     // Takes raw data from the request
     $json = $_POST['json'];
-    echo $json;
 
     $vars = json_decode($json);
     $android_id = $vars->{'android_id'};
@@ -41,7 +40,6 @@
         $location_id = $row['location_id'];
     } else {
         echo "Device is not linked to any location\n";
-        echo $sql_get_deviceID_locationID . "\n";
         exit();
     }
     
@@ -69,7 +67,6 @@
         echo "The JSON is successfully uploaded\n";
     } else {
         echo "SQL add query error\n";
-        echo $sql_add_status . "\n";
     }
     
 ?>

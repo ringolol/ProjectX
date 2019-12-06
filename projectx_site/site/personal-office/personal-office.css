@@ -1,0 +1,37 @@
+.body {
+    background-image: url('img/personal-office-background.jpg');
+    background-size: cover;
+}
+
+.header {
+    background-color: var(--dark-background);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-panel.header__nav-panel {
+    padding-top: 20px;
+}
+
+.header__nav-ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    font-size: 22px;
+    
+}
+
+.nav-item.header__nav-item {
+    text-decoration: none;
+    background: none;
+    margin: 40px;
+    color: #f0f0f0;
+    border: 3px solid #273c75;
+    padding: 14px 10px;
+    border-radius: 24px;
+    transition: 0.4s;
+}
+
+.nav-item.header__nav-item:hover {
+    background: var(--nice-green);
+}
