@@ -91,3 +91,10 @@ LIMIT 1;
 -- test #2
 USE projectx_db;
 INSERT INTO files (device_id,location_id,image) VALUES(7,2,'test');
+
+-- test #3
+USE projectx_db;
+SELECT device_id, location_id
+FROM devices
+JOIN devices_locations USING (device_id)
+WHERE android_id = 'krakoziabra314';
