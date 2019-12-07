@@ -1,6 +1,6 @@
 USE projectx_db;
 
-INSERT INTO users (name, email, password)
+INSERT INTO users (username, email, password)
 	VALUES 
 		('John','JohnHK@mail.com','123321'),
 		('Michael','Mike88@mail.com','321123'),
