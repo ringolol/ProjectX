@@ -26,12 +26,10 @@
 
 /* Main container */
 .overlay-image {
-  width: 400px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  position: relative;
-  /*width: 100%;*/
+  align-items: center;
  }
 
  /* Original image */
@@ -39,7 +37,13 @@
   display: block;
   width: 100%;
   height: auto;
+  transition: all 1s;
  }
+
+ .overlay-image.image:hover {
+  transform: scale(1.05);
+ }
+
  /* Original text overlay */
  .overlay-image .text {
   font-family: "Montserrat", sans-serif;
