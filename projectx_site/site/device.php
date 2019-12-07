@@ -16,19 +16,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Personal office</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
     <link rel="stylesheet" href="photo-gallery/photo-gallery.css">
-    <link rel="stylesheet" href="personal-office/personal-office__background.css">
 <body class="body">
     <header class="header">
         <nav class="nav-panel header__nav-panel">
-            <ul class="header__nav-ul">
-                <li>
-                    <a href="index.php" class="nav-item header__nav-item">Locations</a>
+            <ul class="nav-panel__ul">
+                <li class="nav-panel__li">
+                    <a href="index.php" class="items nav-panel__items">Locations</a>
                 </li>
-                <li>
-                    <a href="logout.php" class="nav-item header__nav-item">Logout</a>
+                <li class="logo nav-panel__li">
+                  <a href="#" class="nav-panel__logo-link"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo white-logo"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo black-logo"></a>
+                </li>
+                <li class="nav-panel__li">
+                    <a href="logout.php" class="items nav-panel__items">Logout</a>
                 </li>
             </ul>
         </nav>
