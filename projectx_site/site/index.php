@@ -18,6 +18,7 @@
     <title>Personal office</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="personal-office/background.css">
     <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
     <link rel="stylesheet" href="personal-office/personal-office__photo-section/personal-office__photo-section.css">
     <style>
