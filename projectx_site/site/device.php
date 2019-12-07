@@ -74,10 +74,40 @@
 
                     $result_photo = $con->query($sql_get_last_photo);
 
-                    while($row_photo = $result_photo->fetch_assoc()) {
+                    echo "<div class='overlay-image'>";
+                    if($row_photo = $result_photo->fetch_assoc()) {
                         $image_path = $row_photo['image_path'];
-                        echo "<img src='{$image_path}'>";
+                        echo "<img src='{$image_path}' class='image'>";
                     }
+
+                    $sql_get_device_name = "
+                    SELECT name
+                    FROM devices
+                    WHERE device_id = '{$device_id}'";
+
+                    $result_name = $con->query($sql_get_device_name);
+
+                    if($row_name = $result_name->fetch_assoc()) {
+                        echo "<div class='text'>{$row_name['name']}";
+                    }
+
+                    $sql_get_status = "
+                    SELECT *
+                    FROM devices_statuses
+                    WHERE device_id = '{$device_id}' AND location_id = '{$location_id}'
+                    ORDER BY status_id DESC
+                    LIMIT 1";
+
+                    $result_status = $con->query($sql_get_status);
+
+                    if($row_status = $result_status->fetch_assoc()) {
+                        $pos_str = sprintf('%0.3f/%0.3f', $row_status['latitude'], $row_status['longitude']);
+                        echo "<div><font  size='3''>Position: {$pos_str};
+                        Charge: {$row_status['charge_level']}% is {$row_status['charge_status']}</font></div>";
+                    }
+
+                    
+                    echo "</div></div>";
                 }
 
                 // Close connection
