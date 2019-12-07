@@ -1,13 +1,16 @@
 <?php
     if (is_uploaded_file($_FILES['sent_image']['tmp_name'])) {
         $android_id = $_POST['android_id'];
-        $uploads_dir = "images/{$android_id}/";
+        $main_dir = "images/{$android_id}/";
+        $uploads_dir = "../" . $main_dir;
         $tmp_name = $_FILES['sent_image']['tmp_name'];
         $pic_name = $_FILES['sent_image']['name'];
     
         $time_stamp = $_POST['time_stamp'];
         $GUID = uniqid();
-        $image_path = $uploads_dir."img{$time_stamp}{$GUID}.png";
+        $image_name = "img{$time_stamp}{$GUID}.png";
+        $image_path = $uploads_dir . $image_name;
+        $main_image_path = $main_dir . $image_name;
 
         if ( ! is_dir($uploads_dir)) {
             mkdir($uploads_dir);
@@ -15,20 +18,8 @@
 
         move_uploaded_file($tmp_name, $image_path);
 
-        // database "constants"
-        $servername = "localhost";
-        $username = "root";
-        $password = "12344321aAcCc";
-        $dbname = "projectx_db";
-        
-        // Create connection
-        $con = new mysqli($servername, $username, $password, $dbname);
-        
-        // Check connection
-        if (mysqli_connect_errno())
-        {
-            echo "Failed to connect to the MySQL: " . mysqli_connect_error() + "\n";
-        }
+        /* Include config file */
+        require_once "../config.php";
 
         $sql_get_deviceID_locationID =
         "SELECT device_id, location_id
@@ -43,7 +34,6 @@
             $location_id = $row['location_id'];
         } else {
             echo "Device is not linked to any location\n";
-            echo $sql_get_deviceID_locationID . "\n";
             exit();
         }
 
@@ -52,7 +42,7 @@
                                 ('{$device_id}',
                                 '{$location_id}',
                                 '{$time_stamp}',
-                                '{$image_path}');";
+                                '{$main_image_path}');";
 
         if(mysqli_query($con, $sql_insert_image))
         {

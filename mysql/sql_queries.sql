@@ -98,3 +98,16 @@ SELECT device_id, location_id
 FROM devices
 JOIN devices_locations USING (device_id)
 WHERE android_id = 'krakoziabra314';
+
+-- hash password
+SELECT MD5('rasmuslerdorf');
+
+--
+USE projectx_db;
+SELECT image_path
+	FROM files
+	WHERE 
+		device_id = '7' 
+		AND location_id = '2'
+	ORDER BY file_id DESC
+	LIMIT 1;
