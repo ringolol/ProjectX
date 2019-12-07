@@ -16,10 +16,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Personal office</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
     <link rel="stylesheet" href="personal-office/personal-office__photo-section/personal-office__photo-section.css">
-    <link rel="stylesheet" href="personal-office/personal-office__background.css">
     <style>
       a:link, a:visited, a:hover, a:active {
         text-decoration: none;
@@ -28,11 +28,18 @@
 <body class="body">
     <header class="header">
         <nav class="nav-panel header__nav-panel">
-            <ul class="header__nav-ul">
-                <li>
-                    <a href="logout.php" class="nav-item header__nav-item">Logout</a>
+            <ul class="nav-panel__ul">
+                <li class="nav-panel__li">
+                    <a href="logout.php" class="items nav-panel__items">Logout</a>
+                </li>
+                <li class="logo nav-panel__li">
+                  <a href="#" class="nav-panel__logo-link"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo white-logo"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo black-logo"></a>
+                </li>
+                <li class="nav-panel__li">
+                    <a href="#" class="items nav-panel__items">About</a>
                 </li>
             </ul>
+            <a class="nav-panel__icon" href="javascript:void(0);"><span class="nav-panel__icon-span"></span><span class="nav-panel__icon-span"></span><span class="nav-panel__icon-span"></span></a>
         </nav>
     </header>
     <main class="main-body">
@@ -71,5 +78,6 @@
         </section>
     </main>
     <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 </html>

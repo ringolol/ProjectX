@@ -1,37 +1,94 @@
-.body {
-    background-image: url('img/personal-office-background.jpg');
-    background-size: cover;
+html {
+    box-sizing: border-box;
 }
 
 .header {
-    background-color: var(--dark-background);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 
 .nav-panel.header__nav-panel {
-    padding-top: 20px;
-}
-
-.header__nav-ul {
-    list-style: none;
     display: flex;
-    justify-content: flex-end;
-    height: 50px;
-    font-size: 22px;
-    
+    justify-content: center;
+    padding: 20px 30px;
+    position: absolute;
+    transform: all 0.3s;
+    background: white;
+    z-index: 9;
+    top: 0px;
+    width: 100%;
 }
 
-.nav-item.header__nav-item {
+.nav-panel__ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+}
+
+.nav-panel__li {
+    display: flex;
+}
+
+.items.nav-panel__items {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1em;
+    color: #333;
+    padding: 0.25rem 0;
+    margin: 0 1.80rem;
+    text-transform: uppercase;
     text-decoration: none;
-    background: none;
-    margin: 40px;
-    color: #f0f0f0;
-    border: 3px solid #273c75;
-    padding: 14px 10px;
-    border-radius: 24px;
-    transition: 0.4s;
 }
 
-.nav-item.header__nav-item:hover {
-    background: var(--nice-green);
+.items.nav-panel__items:hover {
+    text-decoration: overline;
+}
+
+.black-logo {
+    display: none;
+}
+
+.white-logo {
+    width: 200px;
+}
+
+.nav-panel__logo-link {
+    margin: 0 4rem;
+}
+
+.nav-panel__icon {
+    position: absolute;
+    top: 27px;
+    right: 30px;
+    padding: 5px;
+    width: 40px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.nav-panel__icon-span {
+    background: #333;
+    width: 30px;
+    height: 1px;
+    display: block;
+    transition: 300ms linear all;
+}
+
+.nav-panel__icon-span:nth-child(1),
+.nav-panel__icon-span:nth-child(3) {
+    width: 20px;
+    margin: 0 auto;
+}
+
+.nav-panel__icon-span:nth-child(2) {
+    margin: 5px 0;
+    width: 32px;
+}
+
+.nav-panel__icon:hover .nav-panel__icon-span:nth-child(1),
+.nav-panel__icon:hover .nav-panel__icon-span:nth-child(3) {
+    width: 30px;
 }
