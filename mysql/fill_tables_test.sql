@@ -2,9 +2,9 @@ USE projectx_db;
 
 INSERT INTO users (username, email, password)
 	VALUES 
-		('John','JohnHK@mail.com','123321'),
-		('Michael','Mike88@mail.com','321123'),
-        ('Rosa','Rossalia@mail.com','r123321');
+		('John','JohnHK@mail.com','$2y$10$Iwxl/jBVe22cmvCcWLZtv.NKuDCMGFP6k9Zk91HtQGVRVOggYmZg.'),
+		('Michael','Mike88@mail.com','$2y$10$PPwegbqJq36PGhmNXfGRXORJa3Ju8QjP8BQe2vzlyyvR0V27FcK1W'),
+        ('Rosa','Rossalia@mail.com','$2y$10$gHq7Q.hmoQAPJJZYtPnbAuk1Xvpg1IYdsmdzdrDBXpvHgQtsTThSq');
         
 INSERT INTO devices (android_id)
 	VALUES 
