@@ -95,7 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="login-form/login-form.css">
     <link rel="preload" href="img/login-form-background.webp" as="image" type="image/webp">
 </head>
