@@ -18,10 +18,9 @@
     <title>Personal office</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="personal-office/background.css">
     <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
     <link rel="stylesheet" href="photo-gallery/photo-gallery.css">
-<body class="body">
+<body>
     <header class="header">
         <nav class="nav-panel header__nav-panel">
             <ul class="nav-panel__ul">

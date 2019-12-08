@@ -1,11 +1,10 @@
-.body {
+body {
 	height: 100vh;
     background-image: url('img/login-form-background.webp');
-    /* background: var(--background-gradient); */
     background-size: cover;
     display: flex;
-	justify-content: center;
-    align-items: center;
+	/*justify-content: center;*/
+    /*align-items: center;*/
 }
 
 .register_text {
@@ -26,7 +25,7 @@
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
     font-family: "Montserrat", sans-serif;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     flex-direction: column;
 }
 
@@ -38,20 +37,19 @@
 }
 
 .input.login-form__input {
-    border: 0;
-    background: none;
+    /*border: 0;*/
+    /*background: none;*/
     margin: 20px auto;
     text-align: center;
     border: 3px solid #273c75;
     padding: 14px 10px;
     width: 200px;
-    outline: none;
+    /*outline: none;*/
     color: white;
     border-radius: 24px;
     font-size: 18px;
     transition: 0.25s;
 }
-
 
 
 .input.login-form__input:focus {
@@ -60,14 +58,14 @@
 }
 
 .button.login-form__button {
-    border: 0;
+    /*border: 0;*/
     background: none;
     margin: 20px auto;
     text-align: center;
     border: 3px solid var(--nice-green);
     padding: 14px 10px;
     width: 226px;
-    outline: none;
+    /*outline: none;*/
     color: white;
     border-radius: 24px;
     font-size: 18px;
@@ -76,4 +74,15 @@
 .button.login-form__button:hover {
     background: var(--nice-green);
     transition: 0.3s; 
+}
+
+:root {
+    --background-gradient: linear-gradient(to top, #209cff 0%, #68e0cf 100%);
+    --dark-background: #0a0e31;
+    --field-color: rgba(255, 255, 255, 0.08);
+    --nice-green: #10ac84;
+}
+
+a {
+    color: white;
 }
