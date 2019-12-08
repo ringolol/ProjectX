@@ -16,7 +16,7 @@ html {
     justify-content: center;
     padding: 20px 30px;
     position: absolute;
-    transform: all 0.3s;
+    /*transform: all 0.3s;*/
     background: white;
     z-index: 9;
     top: 0px;
@@ -39,7 +39,7 @@ html {
     color: #333;
     padding: 0.25rem 0;
     margin: 0 1.80rem;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     text-decoration: none;
 }
 
@@ -74,7 +74,7 @@ html {
     width: 30px;
     height: 1px;
     display: block;
-    transition: 300ms linear all;
+    /*transition: 300ms linear all;*/
 }
 
 .nav-panel__icon-span:nth-child(1),
