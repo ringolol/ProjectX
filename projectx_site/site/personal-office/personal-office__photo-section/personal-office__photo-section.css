@@ -1,21 +1,17 @@
-*,
+/**,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+}*/
 
 html {
   font-size: 62.5%;
 }
 
 body {
-
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
   min-height: 100vh;
-
   color: hsla(0, 0%, 0%, .6);
   background: var(--background-color);
   text-align: center;
@@ -33,14 +29,13 @@ h1+p {
 
 .main {
   display: flex;
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
   justify-content: center;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .wrap {
   margin: 2rem;
-
   transform-style: preserve-3d;
   transform: perspective(100rem);
 
@@ -48,6 +43,8 @@ h1+p {
 }
 
 .container {
+  
+
   --rX: 0;
   --rY: 0;
   --bX: 50%;
@@ -57,7 +54,7 @@ h1+p {
   height: 36rem;
   border: 1px solid var(--background-color);
   border-radius: 1.6rem;
-  padding: 4rem;
+  /*padding: 4rem;*/
 
   display: flex;
   align-items: flex-end;
@@ -119,6 +116,7 @@ h1+p {
 .container p {
   color: hsla(0, 0%, 100%, .6);
   font-size: 2.2rem;
+  padding-left: 3rem;
 }
 
 .wrap:hover .container::before,

@@ -62,5 +62,8 @@
     } else {
         echo "SQL add query error\n";
     }
+
+    // Close connection
+    mysqli_close($con);
     
 ?>

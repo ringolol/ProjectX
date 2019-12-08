@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="preload" href="img/login-form-background.webp" as="image" type="image/webp">
 </head>
 
-<body class="body">
+<body>
     <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <h1 class="login-form__title-text">Login</h1>
         <input class="input login-form__input" type="text" name="username" placeholder="Username" style="background:#0a0e31;" required>

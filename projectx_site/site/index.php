@@ -26,7 +26,7 @@
     }
   </style>
 </head>
-<body class="body">
+<body>
     <header class="header">
         <nav class="nav-panel header__nav-panel">
             <ul class="nav-panel__ul">

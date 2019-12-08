@@ -79,4 +79,7 @@
         echo "Failed to upload the file. No file\n";
     }
 
+    // Close connection
+    mysqli_close($con);
+
 ?>
