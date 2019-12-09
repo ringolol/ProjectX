@@ -1,13 +1,20 @@
 <?php
 
-    // Initialize the session
-    session_start();
-    
-    // Check if the user is logged in, if not then redirect him to login page
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
-        exit;
-    }
+  // Initialize the session
+  session_start();
+  
+  // Check if the user is logged in, if not then redirect him to login page
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+      header("location: login.php");
+      exit;
+  }
+
+  if(isset($_POST['btn'])) { 
+    list($loc_id,$loc_name) = explode('|', $_POST['btn']);
+    $_SESSION['location_id']=$loc_id;
+    $_SESSION['location_name']=$loc_name;
+    header('Location: device.php');
+  } 
 
 ?>
 
@@ -41,10 +48,8 @@
             </ul>
         </nav>
     </header>
-    <main class="main-body">
         <h1>Locations</h1>
-        <section class="main">
-        
+        <main class="main">
           <?php 
             $user_id = $_SESSION["user_id"];
 
@@ -60,22 +65,27 @@
 
             while($row_loc = $result_loc->fetch_assoc()) {
               echo "
-              <a href='device.php?loc={$row_loc['location_id']}'>
+              <a href='device.php?locId={$row_loc['location_id']}&locName={$row_loc['name']}'>
                 <div class='wrap wrap--1'>
                   <div class='container container--1'>
                     <p>{$row_loc['name']}</p>
                   </div>
                 </div>
               </a>";
+              //echo "<input type='submit' name='button1' value='{$row_loc['name']}' class='wrap wrap--1 container container--1'/> ";
+              /*echo "
+              <div class='wrap'>
+                <div class='container'>
+                  <input type='submit' name='btn' value='{$row_loc['location_id']}|{$row_loc['name']}'/>
+                </div>
+              </div>";*/
             }
 
             // Close connection
             mysqli_close($con);
 
           ?>
-        
-        </section>
-    </main>
+        </main>
     <footer></footer>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
