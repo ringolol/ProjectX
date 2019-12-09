@@ -39,10 +39,8 @@
      
         <h1 class="title">Location
             <?php
-            
-                $location_id = $_GET['loc'];
-                echo "#{$location_id}"
-            
+                $location_name = $_GET["locName"];
+                echo "{$location_name}\n";
             ?>
         </h1>
 
@@ -50,13 +48,14 @@
             <?php
 
                 $user_id = $_SESSION["user_id"];
+                $location_id = $_GET["locId"];
                 
 
                 // Include config file
                 require_once "config.php";
 
                 $sql_get_devices = "
-                SELECT device_id
+                SELECT device_id, note
                 FROM devices_locations
                 WHERE location_id = '{$location_id}'";
 
@@ -64,6 +63,7 @@
 
                 while($row_devs = $result_devs->fetch_assoc()) {
                     $device_id = $row_devs['device_id'];
+                    $device_note = $row_devs['note'];
 
                     $sql_get_last_photo = "
                     SELECT image_path
@@ -82,7 +82,7 @@
                         echo "<img src='{$image_path}' class='image'>";
                     }
 
-                    $sql_get_device_name = "
+                    /*$sql_get_device_name = "
                     SELECT name
                     FROM devices
                     WHERE device_id = '{$device_id}'";
@@ -91,7 +91,8 @@
 
                     if($row_name = $result_name->fetch_assoc()) {
                         echo "<div class='text'>{$row_name['name']}";
-                    }
+                    }*/
+                    echo "<div class='text'>{$device_note}";
 
                     $sql_get_status = "
                     SELECT *
