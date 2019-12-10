@@ -92,8 +92,8 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="css/login-form.css">
-    <link rel="preload" href="css" as="style" type="css/vars.css">
-    <link rel="preload" href="css" as="style" type="css/index.css">
+    <link rel="preload" href="css/vars.css" as="style">
+    <link rel="preload" href="css/index.css" as="style">
 </head>
 
 <body>

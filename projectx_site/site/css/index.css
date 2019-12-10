@@ -173,9 +173,10 @@ h1 {
 }
   
 .container-location p {
+    font-family: var(--mainFont);
     color: hsla(0, 0%, 100%, .6);
-    font-size: 2.2rem;
-    padding-left: 3rem;
+    font-size: 1.6rem;
+    padding: 2rem 3rem 2rem;
 }
   
 .wrap:hover .container-location::before,
