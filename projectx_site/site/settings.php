@@ -3,6 +3,37 @@
     // if user not logged in redirect him to login page
     require 'web_scripts/is_not_logged_in.php';
 
+    $device_id = $_GET['devId'];
+    $location_id = $_GET['locId'];
+
+    // todo check location & device_id bound
+
+    // Connect db 
+    require_once "config_db.php";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+    } else {
+        
+        $sql_get_status = 
+        "SELECT flash, front
+        FROM devices
+        WHERE device_id =  {$device_id}";
+
+        $result_get = $con->query($sql_get_status);
+
+        $flash = false;
+        $front = false;
+
+        if($row_get = $result_get->fetch_assoc()) {
+            $flash = boolval($row_get['flash']);
+            $front = boolval($row_get['front']);
+        }
+
+        // Close connection
+        mysqli_close($con);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +81,10 @@
         <main class="main-body">
             <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <h1 class="">Settings</h1>
-                Flash <input class="" type="checkbox" name="username" placeholder="Username"><br>
-                Front camera <input class="t" type="checkbox" name="password" placeholder="Password"><br>
+                Flash <input class="" type="checkbox" name="username" placeholder="Username"
+                    <?php if($flash) echo checked ?>><br>
+                Front camera <input class="t" type="checkbox" name="password" placeholder="Password"
+                    <?php if($front) echo checked ?>><br>
                 <input class="" type="submit" value="Apply">
             </form>
         </main>
