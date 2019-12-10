@@ -27,10 +27,15 @@ html {
     display: flex;
     align-items: center;
     flex-wrap: wrap;  
+    list-style: none;
 }
 
 .nav-panel__li {
-    display: flex;
+    /*display: flex;*/
+    /*width: 100px;*/
+    min-width: 150px;
+    text-align: center;
+    flex-wrap: wrap; 
 }
 
 .items.nav-panel__items {
@@ -55,9 +60,9 @@ html {
     width: 200px;
 }
 
-.nav-panel__logo-link {
+/*.nav-panel__logo-link {
     margin: 0 4rem;
-}
+}*/
 
 .nav-panel__icon {
     position: absolute;

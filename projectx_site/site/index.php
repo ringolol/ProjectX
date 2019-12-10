@@ -22,7 +22,7 @@
         <nav class="nav-panel header__nav-panel">
             <ul class="nav-panel__ul">
                 <li class="nav-panel__li">
-                  <a href="#" class="items nav-panel__items">About</a>
+                  
                 </li>
                 <li class="logo nav-panel__li">
                   <a href="#" class="nav-panel__logo-link">

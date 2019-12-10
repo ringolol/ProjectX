@@ -1,8 +1,23 @@
 <!-- Create title -->
 <h1 class="title">Location
     <?php
-        $location_name = $_GET["locName"];
-        echo "{$location_name}\n";
+        // Connect db 
+        require_once "../config_db.php";
+
+        $sql_locations =   "
+        SELECT name
+            FROM locations
+            WHERE location_id = '{$_GET['locId']}'";
+            
+        $result_loc = $con->query($sql_locations);
+
+        if($row_loc = $result_loc->fetch_assoc())
+        {
+            echo "{$row_loc['name']}\n";
+        }
+
+        // Close connection
+        /*mysqli_close($con);*/
     ?>
 </h1>
 
@@ -14,7 +29,7 @@
         $location_id = $_GET["locId"];
         
         // Connect db 
-        require_once "../config_db.php";
+        /*require_once "../config_db.php";*/
 
         // get device id and device note
         $sql_get_devices = "
@@ -71,7 +86,7 @@
             echo "</div>";
 
             // create icons for settings and gallery
-            echo "<a href='settings.php?devId={$device_id}'>
+            echo "<a href='settings.php?devId={$device_id}&locId={$location_id}'>
                     <img src='./photo-gallery/settings.png' class='sett_icon'>
                   </a>
                   <a href='gallery.php?devId={$device_id}&locId={$location_id}'>

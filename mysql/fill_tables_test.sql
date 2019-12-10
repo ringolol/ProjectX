@@ -36,6 +36,6 @@ INSERT INTO locations (user_id, name)
         
 INSERT INTO devices_locations
 	VALUE
-		(3, 5, 'RECEPTION');
+		(3, 6, 'RECEPTION');
 
 		

@@ -29,9 +29,9 @@ h1+p {
 
 .main {
   display: flex;
-  /*flex-wrap: wrap;*/
+  flex-wrap: wrap;
   justify-content: center;
-  /*align-items: center;*/
+  align-items: center;
 }
 
 .wrap {
@@ -105,7 +105,11 @@ h1+p {
 
 /*.container--active {
   transition: none;
-}
+}*/
+
+/*.container--1 {
+  filter: hue-rotate(80deg) saturate(140%);
+}*/
 
 .container--2 {
   filter: hue-rotate(80deg) saturate(140%);
@@ -113,7 +117,7 @@ h1+p {
 
 .container--3 {
   filter: hue-rotate(160deg) saturate(140%);
-}*/
+}
 
 .container p {
   color: hsla(0, 0%, 100%, .6);
