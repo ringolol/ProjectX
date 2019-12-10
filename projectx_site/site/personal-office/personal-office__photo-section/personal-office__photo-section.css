@@ -137,3 +137,7 @@ h1+p {
   width: calc(100% - 4rem);
   height: calc(100% - 4rem);
 }
+
+a {
+  text-decoration: none;
+}
