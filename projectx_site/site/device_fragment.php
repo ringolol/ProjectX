@@ -1,3 +1,4 @@
+<!-- Create title -->
 <h1 class="title">Location
     <?php
         $location_name = $_GET["locName"];
@@ -5,14 +6,17 @@
     ?>
 </h1>
 
+<!-- draw devices on this location -->
 <div class="container" id="scores">
     <?php
+        // get values from header and session
         $user_id = $_SESSION["user_id"];
         $location_id = $_GET["locId"];
         
-        // Include config file
+        // Include config file (connect DB)
         require_once "config.php";
 
+        // get device id and device note
         $sql_get_devices = "
         SELECT device_id, note
         FROM devices_locations
@@ -20,10 +24,13 @@
 
         $result_devs = $con->query($sql_get_devices);
 
+        // for each device on this location
         while($row_devs = $result_devs->fetch_assoc()) {
+            // device id and device name
             $device_id = $row_devs['device_id'];
             $device_note = $row_devs['note'];
 
+            // get last uploaded image by this device
             $sql_get_last_photo = "
             SELECT image_path
             FROM files
@@ -35,14 +42,17 @@
 
             $result_photo = $con->query($sql_get_last_photo);
 
+            // draw the last image
             echo "<div class='overlay-image'>";
             if($row_photo = $result_photo->fetch_assoc()) {
                 $image_path = $row_photo['image_path'];
                 echo "<img src='{$image_path}' class='image' id='dev_image'>";
             }
 
+            // draw device note
             echo "<div class='text'>{$device_note}";
 
+            // get last device status: location, charge, etc.
             $sql_get_status = "
             SELECT *
             FROM devices_statuses
@@ -52,6 +62,7 @@
 
             $result_status = $con->query($sql_get_status);
 
+            // draw device status
             if($row_status = $result_status->fetch_assoc()) {
                 $pos_str = sprintf('%0.3f/%0.3f', $row_status['latitude'], $row_status['longitude']);
                 echo "<div><font  size='3''>Position: {$pos_str};
@@ -59,6 +70,7 @@
             }
             echo "</div>";
 
+            // create icons for settings and gallery
             echo "<a href='settings.php?devId={$device_id}'>
                     <img src='photo-gallery/settings.png' class='sett_icon'>
                   </a>
