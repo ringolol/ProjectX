@@ -59,6 +59,7 @@
 
         /* Move temp file into device's dir */
         move_uploaded_file($tmp_name, $image_path);
+        /*imagescale($tmp_name,450)*/
 
         /* Insert image path into DB -- table files */
         $sql_insert_image = "INSERT INTO files (device_id, location_id, time_stamp, image_path)
