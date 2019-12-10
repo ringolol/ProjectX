@@ -72,10 +72,10 @@
 
             // create icons for settings and gallery
             echo "<a href='settings.php?devId={$device_id}'>
-                    <img src='./photo-gallery/settings.png' class='sett_icon'>
+                    <img src='images_work/settings.png' class='sett_icon'>
                   </a>
                   <a href='gallery.php?devId={$device_id}&locId={$location_id}'>
-                    <img src='./photo-gallery/gallery.png' class='gall_icon'>
+                    <img src='images_work/gallery.png' class='gall_icon'>
                   </a>";
 
             echo "</div>";

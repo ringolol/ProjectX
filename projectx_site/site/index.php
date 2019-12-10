@@ -12,10 +12,7 @@
   <title>Personal office</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" >
-  <link rel="stylesheet" 
-    href="personal-office/personal-office__header/personal-office__header.css">
-  <link rel="stylesheet" 
-    href="personal-office/personal-office__photo-section/personal-office__photo-section.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <header class="header">
@@ -26,8 +23,8 @@
                 </li>
                 <li class="logo nav-panel__li">
                   <a href="#" class="nav-panel__logo-link">
-                    <img src="personal-office/personal-office__header/logo.svg" class="logo nav-panel__logo white-logo">
-                    <img src="personal-office/personal-office__header/logo.svg" class="logo nav-panel__logo black-logo">
+                    <img src="images_work/logo.svg" class="logo nav-panel__logo white-logo">
+                    <img src="images_work/logo.svg" class="logo nav-panel__logo black-logo">
                   </a>
                 </li>
                 <li class="nav-panel__li">
@@ -41,5 +38,7 @@
           <!-- Add locations here -->
           <?php require 'web_scripts/index_fragment.php'; ?>
         </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>
 </html>

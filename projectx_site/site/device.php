@@ -10,12 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Personal office</title>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" >
-        <link rel="stylesheet" 
-            href="personal-office/personal-office__header/personal-office__header.css">
-        <link rel="stylesheet" 
-            href="photo-gallery/photo-gallery.css">
+        <link rel="stylesheet" href="css/index.css">
         <!-- Connect jquery from google -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- Reload pictures every second -->
@@ -38,9 +33,9 @@
                     </li>
                     <li class="logo nav-panel__li">
                         <a href="#" class="nav-panel__logo-link">
-                            <img src="personal-office/personal-office__header/logo.svg" 
+                            <img src="images_work/logo.svg" 
                                 class="nav-panel__logo white-logo">
-                            <img src="personal-office/personal-office__header/logo.svg" 
+                            <img src="images_work/logo.svg" 
                                 class="nav-panel__logo black-logo">
                         </a>
                     </li>

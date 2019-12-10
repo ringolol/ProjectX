@@ -21,7 +21,7 @@
         echo "
         <a href='./device.php?locId={$row_loc['location_id']}&locName={$row_loc['name']}'>
             <div class='wrap wrap--1'>
-                <div class='container container--1'>
+                <div class='container-location container--1'>
                     <p>{$row_loc['name']}</p>
                 </div>
             </div>
