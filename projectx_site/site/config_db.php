@@ -3,7 +3,7 @@
     /* Database credentials. */
     define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', '12344321aAcCc');
+    define('DB_PASSWORD', '');
     define('DB_NAME', 'projectx_db');
     
     /* Attempt to connect to MySQL database */
