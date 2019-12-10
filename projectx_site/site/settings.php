@@ -12,27 +12,34 @@
     require_once "config_db.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-    } else {
-        
-        $sql_get_status = 
-        "SELECT flash, front
-        FROM devices
-        WHERE device_id =  {$device_id}";
+        $fl = !$_POST['useFlash']?0:1;
+        $fr = !$_POST['useFront']?0:1;
 
-        $result_get = $con->query($sql_get_status);
+        $sql_upd_status =
+        "UPDATE devices
+        SET flash = {$fl}, front = {$fr}
+        WHERE device_id = {$device_id}";
 
-        $flash = false;
-        $front = false;
-
-        if($row_get = $result_get->fetch_assoc()) {
-            $flash = boolval($row_get['flash']);
-            $front = boolval($row_get['front']);
-        }
-
-        // Close connection
-        mysqli_close($con);
+        $result_get = $con->query($sql_upd_status);
     }
+        
+    $sql_get_status = 
+    "SELECT flash, front
+    FROM devices
+    WHERE device_id = {$device_id}";
+
+    $result_get = $con->query($sql_get_status);
+
+    $flash = false;
+    $front = false;
+
+    if($row_get = $result_get->fetch_assoc()) {
+        $flash = boolval($row_get['flash']);
+        $front = boolval($row_get['front']);
+    }
+
+    // Close connection
+    mysqli_close($con);
 
 ?>
 
@@ -45,8 +52,15 @@
             href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" >
         <link rel="stylesheet" 
             href="personal-office/personal-office__header/personal-office__header.css">
-        <link rel="stylesheet" 
-            href="photo-gallery/photo-gallery.css">
+
+        <style>
+            .form-settings {
+                align-items: center;
+                
+            }
+        </style>
+        <!--<link rel="stylesheet" 
+            href="photo-gallery/photo-gallery.css">-->
         <!-- Connect jquery from google -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
@@ -78,15 +92,13 @@
                 </ul>
             </nav>
         </header>
-        <main class="main-body">
-            <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form class="form-settings" action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
                 <h1 class="">Settings</h1>
-                Flash <input class="" type="checkbox" name="username" placeholder="Username"
-                    <?php if($flash) echo checked ?>><br>
-                Front camera <input class="t" type="checkbox" name="password" placeholder="Password"
-                    <?php if($front) echo checked ?>><br>
+                Flash <input class="" type="checkbox" name="useFlash"
+                    <?php if($flash) echo 'checked'; ?>><br>
+                Front camera <input class="t" type="checkbox" name="useFront"
+                    <?php if($front) echo 'checked'; ?>><br>
                 <input class="" type="submit" value="Apply">
             </form>
-        </main>
     </body>
 </html>

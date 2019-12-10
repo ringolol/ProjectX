@@ -89,7 +89,7 @@
             echo "<a href='settings.php?devId={$device_id}&locId={$location_id}'>
                     <img src='./photo-gallery/settings.png' class='sett_icon'>
                   </a>
-                  <a href='gallery.php?devId={$device_id}&locId={$location_id}'>
+                  <a href='#'>
                     <img src='./photo-gallery/gallery.png' class='gall_icon'>
                   </a>";
 
