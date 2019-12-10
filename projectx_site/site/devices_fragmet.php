@@ -57,9 +57,16 @@
                 echo "<div><font  size='3''>Position: {$pos_str};
                 Charge: {$row_status['charge_level']}% is {$row_status['charge_status']}</font></div>";
             }
+            echo "</div>";
 
-            
-            echo "</div></div>";
+            echo "<a href='settings.php?devId={$device_id}'>
+                    <img src='photo-gallery/settings.png' class='sett_icon'>
+                  </a>
+                  <a href='gallery.php?devId={$device_id}&locId={$location_id}'>
+                    <img src='photo-gallery/gallery.png' class='gall_icon'>
+                  </a>";
+
+            echo "</div>";
         }
 
         // Close connection

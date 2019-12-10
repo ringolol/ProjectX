@@ -36,7 +36,12 @@
                     <a href="index.php" class="items nav-panel__items">Locations</a>
                 </li>
                 <li class="logo nav-panel__li">
-                  <a href="#" class="nav-panel__logo-link"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo white-logo"><img src="personal-office/personal-office__header/logo.svg" alt="" class="logo nav-panel__logo black-logo"></a>
+                    <a href="#" class="nav-panel__logo-link">
+                        <img src="personal-office/personal-office__header/logo.svg" 
+                            class="nav-panel__logo white-logo">
+                        <img src="personal-office/personal-office__header/logo.svg" 
+                            class="nav-panel__logo black-logo">
+                    </a>
                 </li>
                 <li class="nav-panel__li">
                     <a href="logout.php" class="items nav-panel__items">Logout</a>
