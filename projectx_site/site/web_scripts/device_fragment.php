@@ -7,14 +7,14 @@
 </h1>
 
 <!-- draw devices on this location -->
-<div class="container" id="scores">
+<div class="container">
     <?php
         // get values from header and session
         $user_id = $_SESSION["user_id"];
         $location_id = $_GET["locId"];
         
-        // Include config file (connect DB)
-        require_once "config.php";
+        // Connect db 
+        require_once "../config_db.php";
 
         // get device id and device note
         $sql_get_devices = "
@@ -72,10 +72,10 @@
 
             // create icons for settings and gallery
             echo "<a href='settings.php?devId={$device_id}'>
-                    <img src='photo-gallery/settings.png' class='sett_icon'>
+                    <img src='./photo-gallery/settings.png' class='sett_icon'>
                   </a>
                   <a href='gallery.php?devId={$device_id}&locId={$location_id}'>
-                    <img src='photo-gallery/gallery.png' class='gall_icon'>
+                    <img src='./photo-gallery/gallery.png' class='gall_icon'>
                   </a>";
 
             echo "</div>";

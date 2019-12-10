@@ -1,13 +1,7 @@
 <?php
 
-    // Initialize the session
-    session_start();
-    
-    // Check if the user is logged in, if not redirect him to login page
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
-        exit;
-    }
+    // if user not logged in redirect him to log in page
+    require 'web_scripts/is_not_logged_in.php';
 
 ?>
 
@@ -16,17 +10,20 @@
     <head>
         <meta charset="UTF-8">
         <title>Personal office</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="personal-office/personal-office__header/personal-office__header.css">
-        <link rel="stylesheet" href="photo-gallery/photo-gallery.css">
-        <!-- Connect jquery -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" >
+        <link rel="stylesheet" 
+            href="personal-office/personal-office__header/personal-office__header.css">
+        <link rel="stylesheet" 
+            href="photo-gallery/photo-gallery.css">
+        <!-- Connect jquery from google -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- Reload pictures every second -->
         <script>
             // load function
             function load_fragment() {
                 $('#devices_php')
-                    .load('device_fragment.php<?php echo $_SERVER['REQUEST_URI']; ?>');
+                    .load('web_scripts/device_fragment.php<?php echo $_SERVER['REQUEST_URI']; ?>');
             }
             // timer that triggers every second
             setInterval(function(){ load_fragment(); }, 1000);
@@ -48,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-panel__li">
-                        <a href="logout.php" class="items nav-panel__items">Logout</a>
+                        <a href="web_scripts/logout.php" class="items nav-panel__items">Logout</a>
                     </li>
                 </ul>
             </nav>

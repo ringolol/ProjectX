@@ -3,8 +3,8 @@
     // Get session user_id
     $user_id = $_SESSION["user_id"];
 
-    // Include config file (connect to DB)
-    require_once "config.php";
+    // Connect db 
+    require_once "./config_db.php";
 
     // Get location name and id by user id
     $sql_locations =   "
@@ -19,7 +19,7 @@
         // create html element (like button)
         // customize it's name and link
         echo "
-        <a href='device.php?locId={$row_loc['location_id']}&locName={$row_loc['name']}'>
+        <a href='./device.php?locId={$row_loc['location_id']}&locName={$row_loc['name']}'>
             <div class='wrap wrap--1'>
                 <div class='container container--1'>
                     <p>{$row_loc['name']}</p>

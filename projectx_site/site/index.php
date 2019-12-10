@@ -1,13 +1,7 @@
 <?php
 
-  // Initialize the session
-  session_start();
-  
-  // Check if the user is logged in, if not then redirect him to login page
-  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-      header("location: login.php");
-      exit;
-  }
+    // if user not logged in redirect him to log in page
+    require 'web_scripts/is_not_logged_in.php';
 
 ?>
 
@@ -37,7 +31,7 @@
                   </a>
                 </li>
                 <li class="nav-panel__li">
-                    <a href="logout.php" class="items nav-panel__items">Logout</a>
+                    <a href="web_scripts/logout.php" class="items nav-panel__items">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -45,7 +39,7 @@
         <h1>Locations</h1>
         <main class="main">
           <!-- Add locations here -->
-          <?php require 'index_fragment.php'; ?>
+          <?php require 'web_scripts/index_fragment.php'; ?>
         </main>
 </body>
 </html>
