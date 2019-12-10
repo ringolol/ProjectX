@@ -91,8 +91,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="login-form/login-form.css">
-    <link rel="preload" href="img/login-form-background.webp" as="image" type="image/webp">
+    <link rel="stylesheet" href="css/login-form.css">
+    <link rel="preload" href="css" as="style" type="css/vars.css">
+    <link rel="preload" href="css" as="style" type="css/index.css">
 </head>
 
 <body>
