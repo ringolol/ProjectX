@@ -29,10 +29,18 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $fl = !$_POST['useFlash']?0:1;
         $fr = !$_POST['useFront']?0:1;
+        $hq = !$_POST['highQuality']?0:1;
+        $rw = $_POST['res_width'];
+        $rh = $_POST['res_height'];
 
         $sql_upd_status =
         "UPDATE devices
-        SET flash = {$fl}, front = {$fr}
+        SET 
+            flash = {$fl},
+            front = {$fr},
+            res_width = '{$rw}',
+            res_height = '{$rh}',
+            quality = {$hq}
         WHERE device_id = {$device_id}";
 
         $result_get = $con->query($sql_upd_status);
@@ -44,7 +52,7 @@
         header( "Location: $url" );
     } else {
         $sql_get_status = 
-        "SELECT flash, front
+        "SELECT flash, front, res_width, res_height, quality
         FROM devices
         WHERE device_id = {$device_id}";
 
@@ -52,10 +60,17 @@
 
         $flash = false;
         $front = false;
+        $res_width = 0;
+        $res_height = 0;
+        $quality = 0;
+
 
         if($row_get = $result_get->fetch_assoc()) {
             $flash = boolval($row_get['flash']);
             $front = boolval($row_get['front']);
+            $res_width = $row_get['res_width'];
+            $res_height = $row_get['res_height'];
+            $quality = boolval($row_get['quality']);
         }
         // Close connection
         mysqli_close($con);
@@ -72,59 +87,7 @@
             href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" >
         <link rel="stylesheet" 
             href="personal-office/personal-office__header/personal-office__header.css">
-
-        <style>
-            .contaioner-settings {
-                text-align: center;
-                display: flex;  
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                font-family: Fantasy;
-            }
-            .contaioner-settings form {
-                /*width: 150px;*/
-                background: beige;
-                padding: 30px;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                position: absolute;
-                border-radius: 1.6rem;
-                
-            }
-            .contaioner-settings form .field {
-                padding: 10px;
-                height: 30px;
-                /*width: 100%;*/
-            }
-            .contaioner-settings form .title {
-                font-size: 40px;
-                font-weight: 500;
-                margin-top: 0px;
-                margin-bottom: 20px;
-            }
-            .contaioner-settings form .field .text {
-                /*font-size: 15px;*/
-                left: 10%;
-                position: absolute;
-            }
-            .contaioner-settings form .field .elem {
-                right: 10%;
-                position: absolute;
-            }
-            .contaioner-settings form .field .btn {
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%, 0%);
-                border-radius: 0.5rem;
-                width: 80%;
-                height: 10%;
-                font-size: 18px;
-            }
-        </style>
-        <!--<link rel="stylesheet" 
-            href="photo-gallery/photo-gallery.css">-->
+        <link rel="stylesheet" href="settings/settings.css">
         <!-- Connect jquery from google -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
@@ -165,13 +128,24 @@
                             <?php if($flash) echo 'checked'; ?>>
                     </div>
                     <div class="field">
-                        <div class="text">Front camera</div>
+                        <div class="text">Front Camera</div>
                         <input class="elem" type="checkbox" name="useFront"
                             <?php if($front) echo 'checked'; ?>>
                     </div>
                     <div class="field">
-                        <input class="btn" type="submit" value="Apply">
+                        <div class="text">Camera Res.</div>
+                        <div class="elem">
+                            <input type="text" style="width: 35px" value="<?php echo $res_width ?>" name="res_width">
+                            x
+                            <input type="text" style="width: 35px" value="<?php echo $res_height ?>" name="res_height">
+                        </div>
                     </div>
+                    <div class="field">
+                        <div class="text">High Quality</div>
+                        <input class="elem" type="checkbox" name="highQuality"
+                            <?php if($quality) echo 'checked'; ?>>
+                    </div>
+                    <input class="btn" type="submit" value="Apply">
                 </form>
             </div>
     </body>
