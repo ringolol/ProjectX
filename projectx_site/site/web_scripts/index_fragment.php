@@ -1,10 +1,11 @@
 <?php 
 
     // Get session user_id
+    session_start();
     $user_id = $_SESSION["user_id"];
 
     // Connect db 
-    require_once "./config_db.php";
+    require_once "config_db.php";
 
     // Get location name and id by user id
     $sql_locations =   "

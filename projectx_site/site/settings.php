@@ -1,15 +1,30 @@
 <?php
-
+    session_start();
     // if user not logged in redirect him to login page
     require 'web_scripts/is_not_logged_in.php';
 
     $device_id = $_GET['devId'];
     $location_id = $_GET['locId'];
-
-    // todo check location & device_id bound
+    $user_id = $_SESSION['user_id'];
 
     // Connect db 
     require_once "config_db.php";
+
+    // todo check location & device_id bound
+    $sql_check = "
+    SELECT user_id, location_id, device_id
+    FROM locations
+    JOIN devices_locations
+    USING (location_id)
+    WHERE location_id = '$location_id' AND user_id = '$user_id' AND device_id = '$device_id'";
+
+    $result_check = $con->query($sql_check);
+
+    if(!($row_check = $result_check->fetch_assoc())) {
+        echo "Access error: wrong combination of user_id = '$user_id', location_id = '$location_id' and device_id ='$device_id'";
+        mysqli_close($con);
+        exit;
+    }
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $fl = !$_POST['useFlash']?0:1;
@@ -21,25 +36,30 @@
         WHERE device_id = {$device_id}";
 
         $result_get = $con->query($sql_upd_status);
-    }
-        
-    $sql_get_status = 
-    "SELECT flash, front
-    FROM devices
-    WHERE device_id = {$device_id}";
 
-    $result_get = $con->query($sql_get_status);
+        // Close connection
+        mysqli_close($con);
 
-    $flash = false;
-    $front = false;
+        $url = "device.php?locId=$location_id";
+        header( "Location: $url" );
+    } else {
+        $sql_get_status = 
+        "SELECT flash, front
+        FROM devices
+        WHERE device_id = {$device_id}";
 
-    if($row_get = $result_get->fetch_assoc()) {
-        $flash = boolval($row_get['flash']);
-        $front = boolval($row_get['front']);
-    }
+        $result_get = $con->query($sql_get_status);
 
-    // Close connection
-    mysqli_close($con);
+        $flash = false;
+        $front = false;
+
+        if($row_get = $result_get->fetch_assoc()) {
+            $flash = boolval($row_get['flash']);
+            $front = boolval($row_get['front']);
+        }
+        // Close connection
+        mysqli_close($con);
+    } 
 
 ?>
 
@@ -81,7 +101,8 @@
             .contaioner-settings form .title {
                 font-size: 40px;
                 font-weight: 500;
-                margin: 10px;
+                margin-top: 0px;
+                margin-bottom: 20px;
             }
             .contaioner-settings form .field .text {
                 /*font-size: 15px;*/
@@ -96,14 +117,11 @@
                 position: absolute;
                 left: 50%;
                 transform: translate(-50%, 0%);
-                border-radius: 0.2rem;
+                border-radius: 0.5rem;
                 width: 80%;
                 height: 10%;
                 font-size: 18px;
             }
-
-
-
         </style>
         <!--<link rel="stylesheet" 
             href="photo-gallery/photo-gallery.css">-->

@@ -1,8 +1,30 @@
-<!-- Create title -->
+<?php
+
+    // get values from header and session
+    session_start();
+    $user_id = $_SESSION["user_id"];
+    $location_id = $_GET["locId"];
+
+    // Connect db 
+    require_once "../config_db.php";
+
+    $sql_check = "
+    SELECT user_id
+    FROM locations
+    WHERE location_id = '$location_id'";
+
+    $result_check = $con->query($sql_check);
+
+    if(!($row_check = $result_check->fetch_assoc()) || $row_check['user_id'] != $user_id) {
+        
+        echo "Access error: wrong combination of user_id = '$user_id' and location_id = '$location_id'";
+        mysqli_close($con);
+        exit;
+    }
+
+?>
 <h1 class="title">Location
     <?php
-        // Connect db 
-        require_once "../config_db.php";
 
         $sql_locations =   "
         SELECT name
@@ -24,12 +46,6 @@
 <!-- draw devices on this location -->
 <div class="container">
     <?php
-        // get values from header and session
-        $user_id = $_SESSION["user_id"];
-        $location_id = $_GET["locId"];
-        
-        // Connect db 
-        /*require_once "../config_db.php";*/
 
         // get device id and device note
         $sql_get_devices = "
