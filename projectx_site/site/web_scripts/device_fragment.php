@@ -33,23 +33,25 @@
 
         // get device id and device note
         $sql_get_devices = "
-        SELECT device_id, note
-        FROM devices_locations
+        SELECT device_id, dl.note, android_id
+        FROM devices_locations AS dl
+        JOIN devices
+        USING (device_id)
         WHERE location_id = '{$location_id}'";
 
         $result_devs = $con->query($sql_get_devices);
-
         // for each device on this location
-        while($row_devs = $result_devs->fetch_assoc()) {
+        while($row_devs = mysqli_fetch_row($result_devs)) {
             // device id and device name
-            $device_id = $row_devs['device_id'];
-            $device_note = $row_devs['note'];
+            $device_id = $row_devs[0];
+            $device_note = $row_devs[1];
+            $android_id = $row_devs[2];
 
             // get last uploaded image by this device
             $sql_get_last_photo = "
-            SELECT image_path
+            SELECT image_path, time_stamp
             FROM files
-            WHERE 
+            WHERE
                 device_id = '{$device_id}' 
                 AND location_id = '{$location_id}'
             ORDER BY file_id DESC
@@ -59,10 +61,14 @@
 
             // draw the last image
             echo "<div class='overlay-image'>";
+
+            $time_stamp = 0;
             if($row_photo = $result_photo->fetch_assoc()) {
                 $image_path = $row_photo['image_path'];
                 echo "<img src='{$image_path}' class='image' id='dev_image'>";
+                $time_stamp = $row_photo['time_stamp'];
             }
+            $date = date('H:i d-m-Y', $time_stamp);
 
             // draw device note
             echo "<div class='text'>{$device_note}";
@@ -80,8 +86,15 @@
             // draw device status
             if($row_status = $result_status->fetch_assoc()) {
                 $pos_str = sprintf('%0.3f/%0.3f', $row_status['latitude'], $row_status['longitude']);
-                echo "<div><font  size='3''>Position: {$pos_str};
-                Charge: {$row_status['charge_level']}% is {$row_status['charge_status']}</font></div>";
+                echo "
+                <div>
+                    <font  size='3''>
+                        Android ID: {$android_id} <br>
+                        Date: {$date} <br>
+                        Position: {$pos_str}; 
+                        Charge: {$row_status['charge_level']}% is {$row_status['charge_status']}
+                    </font>
+                </div>";
             }
             echo "</div>";
 

@@ -54,10 +54,56 @@
             href="personal-office/personal-office__header/personal-office__header.css">
 
         <style>
-            .form-settings {
+            .contaioner-settings {
+                text-align: center;
+                display: flex;  
+                flex-wrap: wrap;
+                justify-content: center;
                 align-items: center;
+                font-family: Fantasy;
+            }
+            .contaioner-settings form {
+                /*width: 150px;*/
+                background: beige;
+                padding: 30px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                border-radius: 1.6rem;
                 
             }
+            .contaioner-settings form .field {
+                padding: 10px;
+                height: 30px;
+                /*width: 100%;*/
+            }
+            .contaioner-settings form .title {
+                font-size: 40px;
+                font-weight: 500;
+                margin: 10px;
+            }
+            .contaioner-settings form .field .text {
+                /*font-size: 15px;*/
+                left: 10%;
+                position: absolute;
+            }
+            .contaioner-settings form .field .elem {
+                right: 10%;
+                position: absolute;
+            }
+            .contaioner-settings form .field .btn {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                border-radius: 0.2rem;
+                width: 80%;
+                height: 10%;
+                font-size: 18px;
+            }
+
+
+
         </style>
         <!--<link rel="stylesheet" 
             href="photo-gallery/photo-gallery.css">-->
@@ -92,13 +138,23 @@
                 </ul>
             </nav>
         </header>
-            <form class="form-settings" action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
-                <h1 class="">Settings</h1>
-                Flash <input class="" type="checkbox" name="useFlash"
-                    <?php if($flash) echo 'checked'; ?>><br>
-                Front camera <input class="t" type="checkbox" name="useFront"
-                    <?php if($front) echo 'checked'; ?>><br>
-                <input class="" type="submit" value="Apply">
-            </form>
+            <div class="contaioner-settings">
+                <form action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
+                    <p class="title">Settings</p>
+                    <div class="field">
+                        <div class="text">Flash</div>
+                        <input class="elem" type="checkbox" name="useFlash"
+                            <?php if($flash) echo 'checked'; ?>>
+                    </div>
+                    <div class="field">
+                        <div class="text">Front camera</div>
+                        <input class="elem" type="checkbox" name="useFront"
+                            <?php if($front) echo 'checked'; ?>>
+                    </div>
+                    <div class="field">
+                        <input class="btn" type="submit" value="Apply">
+                    </div>
+                </form>
+            </div>
     </body>
 </html>
