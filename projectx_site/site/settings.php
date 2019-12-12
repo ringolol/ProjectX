@@ -30,18 +30,22 @@
         $fl = !$_POST['useFlash']?0:1;
         $fr = !$_POST['useFront']?0:1;
         $hq = !$_POST['highQuality']?0:1;
-        $rw = $_POST['res_width'];
-        $rh = $_POST['res_height'];
+        $rw = intval($_POST['res_width']);
+        $rh = intval($_POST['res_height']);
+        $ui = intval($_POST['uInter'])*1000;
+        
 
         $sql_upd_status =
         "UPDATE devices
         SET 
             flash = {$fl},
             front = {$fr},
-            res_width = '{$rw}',
-            res_height = '{$rh}',
-            quality = {$hq}
+            quality = {$hq},
+            upd_interval = '{$ui}'
         WHERE device_id = {$device_id}";
+
+        /*res_width = '{$rw}',
+        res_height = '{$rh}',*/
 
         $result_get = $con->query($sql_upd_status);
 
@@ -50,9 +54,16 @@
 
         $url = "device.php?locId=$location_id";
         header( "Location: $url" );
+        echo "upd_interval = $ui";
     } else {
         $sql_get_status = 
-        "SELECT flash, front, res_width, res_height, quality
+        "SELECT 
+            flash, 
+            front, 
+            res_width, 
+            res_height, 
+            quality,
+            upd_interval
         FROM devices
         WHERE device_id = {$device_id}";
 
@@ -71,6 +82,7 @@
             $res_width = $row_get['res_width'];
             $res_height = $row_get['res_height'];
             $quality = boolval($row_get['quality']);
+            $upd_interval = round($row_get['upd_interval']/1000);
         }
         // Close connection
         mysqli_close($con);
@@ -132,13 +144,25 @@
                         <input class="elem" type="checkbox" name="useFront"
                             <?php if($front) echo 'checked'; ?>>
                     </div>
-                    <div class="field">
+                    <!--<div class="field">
                         <div class="text">Camera Res.</div>
                         <div class="elem">
                             <input type="text" style="width: 35px" value="<?php echo $res_width ?>" name="res_width">
                             x
                             <input type="text" style="width: 35px" value="<?php echo $res_height ?>" name="res_height">
                         </div>
+                    </div>-->
+                    <div class="field">
+                        <div class="text">Upd Interval (sec)</div>
+                        <select name="uInter" class="elem">
+                            <option value="<?php echo $upd_interval ?>" hidden selected>
+                                <?php echo $upd_interval ?>
+                            </option>
+                            <option value="60">60</option>
+                            <option value="30">30</option>
+                            <option value="10">10</option>
+                        </select>
+                        <!--<input type="text" class="elem" style="width: 35px" value="<?php echo $upd_interval ?>" name="uInter">-->
                     </div>
                     <div class="field">
                         <div class="text">High Quality</div>

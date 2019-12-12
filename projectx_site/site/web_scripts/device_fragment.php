@@ -118,8 +118,8 @@
             echo "<a href='settings.php?devId={$device_id}&locId={$location_id}'>
                     <img src='./photo-gallery/settings.png' class='sett_icon'>
                   </a>
-                  <a href='#'>
-                    <img src='./photo-gallery/gallery.png' class='gall_icon'>
+                  <a href='web_scripts/shoot_photo.php?devId={$device_id}&locId={$location_id}'>
+                    <img src='./photo-gallery/shoot.png' class='gall_icon'>
                   </a>";
 
             echo "</div>";
