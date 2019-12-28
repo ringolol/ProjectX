@@ -3,15 +3,15 @@
     // Check if the user is already logged in, if yes then redirect him to welcome page
     require 'web_scripts/is_logged_in.php';
     
-    // Connect db 
-    require_once "config_db.php";
-    
     // Define variables and initialize with empty values
     $username = $password = "";
     $username_err = $password_err = "";
     
     // Processing form data when form is submitted
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        // Connect db 
+        require_once "config_db.php";
     
         // Check if username is empty
         if(empty(trim($_POST["username"]))){

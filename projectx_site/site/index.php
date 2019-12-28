@@ -19,7 +19,7 @@
         <nav class="nav-panel header__nav-panel">
             <ul class="nav-panel__ul">
                 <li class="nav-panel__li">
-                  <a href="#" class="items nav-panel__items">About</a>
+                  
                 </li>
                 <li class="logo nav-panel__li">
                   <a href="#" class="nav-panel__logo-link">
@@ -34,6 +34,8 @@
         </nav>
     </header>
         <h1>Locations</h1>
+        <a href='http://31.134.153.18/apk/cameraxappNEW.apk'><h1>DOWNLOAD STABLE APK</h1></a>
+        <a href='http://31.134.153.18/apk/projxapp20191212.apk'><h1>DOWNLOAD LAST APK</h1></a>
         <main class="main">
           <!-- Add locations here -->
           <?php require 'web_scripts/index_fragment.php'; ?>

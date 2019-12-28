@@ -14,7 +14,9 @@ $sql_get_camera_par =
     front,
     quality,
     res_width,
-    res_height
+    res_height,
+    upd_interval,
+    dummy
  FROM devices
  WHERE android_id = '{$android_id}'";
 
